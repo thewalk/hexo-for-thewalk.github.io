@@ -98,6 +98,6 @@ theme: inside
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: 'git'
+  type: git
   repo: https://github.com/thewalk/thewalk.github.io.git
   branch: master
