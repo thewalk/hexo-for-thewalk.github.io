@@ -5,17 +5,17 @@
 # Appearance
 appearance:
   # Accent color, default '#2a2b33'
-  accent_color:
+  # accent_color: 
   # Font color, default '#363636'
-  foreground_color: '#d8d8d8'
+  # foreground_color: '#d8d8d8'
   # Border color, default '#e0e0e0'
-  border_color: '#444'
+  # border_color: '#444'
   # body background, default '#f5f7fa'
-  background: '#202020'
+  # background: '#202020'
   # Sidebar background (when opened), default to accent_color
-  sidebar_background: '#262626'
+  # sidebar_background: '#262626'
   # Card background, default '#fff'
-  card_background: '#252525'
+  # card_background: '#252525'
 
   # All background settings above support image, e.g.,
   # '//www.toptal.com/designers/subtlepatterns/patterns/confectionary.png #f5f7fa' or
@@ -82,6 +82,7 @@ appearance:
   #   '#8abeb7', '#81a2be', '#b294bb', '#a3685a'
   # ]
 
+  # Night from offical page
   highlight: [
     '#252525', '#252525', '#939393', 
     '#585858', '#b8b8b8', '#d8d8d8', 
