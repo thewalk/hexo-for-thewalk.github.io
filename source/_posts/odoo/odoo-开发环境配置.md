@@ -17,31 +17,40 @@ category:
 # 配置启动
 1. odoo的启动方式有很多种，包括直接安装到本机、从docker启动等等，官方的文档和cookbook里都有介绍。我们这里准备做开发，当前有很多东西不是很清楚，为了能够直接的查看odoo源码，了解odoo的设计机制，我们这里采用odoo source code + postgres container的方式带起来，此处可参考cookbook。（*我用的windows 10，部分脚本没办法从cookbook上直接拷来用，有些要改成windows batch，但基本上改动都不会太复杂。*）
 - 通过init脚本可以生成配置文件
-```
-    %~dp0/../env/Scripts/python.exe %~dp0/../src/odoo/odoo-bin ^
-    -c %~dp0/../odooae.cfg --stop-after-init ^
-    -d odoo ^
-    -i base ^
-    --save ^
-    --data-dir %~dp0/../filestore ^
-    --addons-path %~dp0/../src/odoo/odoo/addons,%~dp0/../src/odoo/addons,%~dp0/../local,%~dp0/../src/partner-contact ^
-    --db_host=localhost ^
-    --db_port=8070 ^
-    --db_user=odoo ^
-    --db_password=odoo ^
-```
+    ```
+        %~dp0/../env/Scripts/python.exe %~dp0/../src/odoo/odoo-bin ^
+        -c %~dp0/../odooae.cfg --stop-after-init ^
+        -d odoo ^
+        -i base ^
+        --save ^
+        --data-dir %~dp0/../filestore ^
+        --addons-path %~dp0/../src/odoo/odoo/addons,%~dp0/../src/odoo/addons,%~dp0/../local,%~dp0/../src/partner-contact ^
+        --db_host=localhost ^
+        --db_port=8070 ^
+        --db_user=odoo ^
+        --db_password=odoo ^
+    ```
 - 通过start脚本可以启动odoo
-```
-%~dp0/../env/Scripts/python.exe %~dp0/../src/odoo/odoo-bin -c %~dp0/../odooae.cfg
-```
+    ```
+    %~dp0/../env/Scripts/python.exe %~dp0/../src/odoo/odoo-bin -c %~dp0/../odooae.cfg
+    ```
 2. cookbook也推荐了python virtualenv，通过virtualenv可以较为轻松的创建独立的python环境，以满足不同项目的不同需求。
-3. 为了保证vscode对python的自动补全功能，需要配置vscode项目参数，路径为./vscode/settings.json，我这里将odoo源码路径加了进去，其他的module路径可随时自己添加。
-```
-{
-    "python.pythonPath": "env\\Scripts\\python.exe",
-    "python.autoComplete.extraPaths": ["D:\\6.faststep\\odoo\\odoo-dev\\odooae\\src\\odoo"]
-}
-```
+3. 为了保证vscode对python的自动补全功能，需要配置vscode项目参数，路径为./vscode/settings.json，我这里将odoo源码路径加了进去，其他的module路径可随时自己添加,此外vscode对python的intellisense并不是很好，换用jedi，比较方便。
+    ```
+    {
+        "python.pythonPath": "${workspaceRoot}\\env\\Scripts\\python.exe",
+        "python.autoComplete.extraPaths": [
+            "${workspaceRoot}\\src\\odoo",
+            "${workspaceRoot}\\src\\odoo\\odoo",
+            "${workspaceRoot}\\src\\odoo\\odoo\\addons",
+            "${workspaceRoot}\\src\\odoo\\addons",
+        ],
+        "python.jediEnabled": true,
+        "files.exclude":{
+            "**/*.pyc": true
+        }
+    }
+    ```
 4. 我们在这里用使用git管理源代码，通过配置，我们应当只track自己的项目代码，基本上是odoo module代码，而odoo的代码或者第三方插件的代码都不做跟踪，如果考虑方便后期直接打补丁，那么可以直接git clone这些代码。
 
 # 调试代码
