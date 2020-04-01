@@ -12,8 +12,8 @@ category:
 - **odoo源代码**，这个是必须的，当前使用[odoo 13](https://github.com/odoo/odoo),我采用的是直接下载13.0源代码的方式，这可以忽略odoo的git history，但后期通过pull源码打补丁也就有点复杂，这个在后面再考虑了
 - **python 3.7.6**，最开始我用的windows app store上的python，貌似有权限问题，查了一下，从官网重新下的python，我当时看到的最新的python版本是3.8+，但这个后来通过实践，应该是没法支持odoo 13，还是老实地用3.7.6
 - **vscode**，python我不是很熟，IDEA作为编辑器觉得有些重量级了，拿了vscode，先试试再说。记得要装python的插件。
-- **Odoo development cookbook**, 这个算是入门书，比较合适，千万别看国内的翻译版，有些概念直译很难懂；我在[Packpub](https://www.packtpub.com/)上买的，不算贵，$5；当前好像还没有13版的，就拿了12版的看了看，到目前为止，没有因为版本差异导致学不下来的；epub用MS edge还是很好的
-- **docker**，这应该不用说了，开发基本都要的，虽然这里只在上面起了一个postgres container，还是很方便
+- **Odoo development cookbook**, 这个算是入门书，比较合适，千万别看国内的翻译版，有些概念直译很难懂；我在[Packpub](https://www.packtpub.com/)上买的，不算贵，$5；当前好像还没有13版的，就拿了12版的看了看，到目前为止，没有因为版本差异导致学不下来的；epub用MS edge还是很好的。
+- **docker**，这应该不用说了，开发基本都要的，虽然这里只在上面起了一个postgres container，还是很方便,postgres版本需要根据odoo版本来确定，odoo我们用13，对应的postgres是10。
 
 # 配置启动
 1. odoo的启动方式有很多种，包括直接安装到本机、从docker启动等等，官方的文档和cookbook里都有介绍。我们这里准备做开发，当前有很多东西不是很清楚，为了能够直接的查看odoo源码，了解odoo的设计机制，我们这里采用odoo source code + postgres container的方式带起来，此处可参考cookbook。（*我用的windows 10，部分脚本没办法从cookbook上直接拷来用，有些要改成windows batch，但基本上改动都不会太复杂。*）
